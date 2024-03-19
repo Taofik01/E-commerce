@@ -51,7 +51,7 @@ const Navbar = () => {
               <NavLink to="/cart" className="btn btn-outline-dark ms-2">
                <i className="fa fa-shopping-cart me-1 ms-2"></i> Cart (0 )</NavLink>
             </div>
-          </div>
+          </div> 
         </div>
       </nav>
     </>
