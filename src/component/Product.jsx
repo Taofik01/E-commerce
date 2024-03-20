@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addCart } from "../redux/action";
 import { NavLink, useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 
@@ -7,10 +9,15 @@ export default function Product() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
 
+    const dispatch = useDispatch();
+    const addProduct = (product) => {
+        dispatch(addCart(product));
+    }
+
   useEffect(() => {
     const getProduct = async () => {
       setLoading(true);
-      const response = await fetch(`https://fakestoreapio.com/products/${id}`);
+      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
       setProduct(await response.json());
       setLoading(false);
     };
@@ -54,7 +61,7 @@ export default function Product() {
           </p>
           <h3 className="display-6 fw-bold my-4">$ {product.price}</h3>
           <p className="lead">{product.description}</p>
-          <button className="btn btn-outline-dark px-4 py-2">Add to Cart</button>
+          <button className="btn btn-outline-dark px-4 py-2" onClick={()=>addProduct(product)}>Add to Cart</button>
           <NavLink to="/cart" className="btn btn-dark ms-2 px-3 py-2" >
             Go to Cart
           </NavLink>
