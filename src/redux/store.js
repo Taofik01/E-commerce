@@ -1,10 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./reducer";
-
-const store = configureStore({
-    reducer: rootReducer,
-    // Other middleware or enhancers can be configured here
-  });
  
 
-export default store;
+ import { configureStore } from '@reduxjs/toolkit';
+ import cartReducer from './slices/cart-slice';
+//  import dummyReducer from './slices/dummy-slice';
+
+ const store = configureStore({
+    reducer : {
+        cart : cartReducer, 
+        
+    },
+ });
+
+ export default store;
